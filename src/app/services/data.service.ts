@@ -5,26 +5,26 @@ import { HttpService } from './http.service';
 @Injectable()
 export class DataService  {
 
-  constructor(private http: HttpService) {
-    //  super(_http);
+  constructor(private http: HttpService) {}
+
+  getUsers() {
+    return this.http.request('GET', '/users');
   }
 
-  getPosts() {
-    return this.http.request('GET', '/posts');
+  getUserById(id) {
+    return this.http.request('GET', `/users/${id}`);
+  }
+
+  getPostById(id) {
+    return this.http.request('GET', `/posts/${id}`);
   }
 
   getPostsByUserId(userId) {
     return this.http.request('GET', `/posts?userId=${userId}`);
   }
 
-  getUsers() {
-    return this.http.request('GET', '/users');
+  getCommentsByPostId(postId) {
+    return this.http.request('GET', `/comments?postId=${postId}`);
   }
-
-  // authWithSocialNetwork(socialProfileInfo) {
-  //   return this._http.request('POST', `auth/login-social`, {data: socialProfileInfo});
-  // }
-
-
 
 }

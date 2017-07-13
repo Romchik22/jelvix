@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, RequestOptions, Headers, URLSearchParams } from '@angular/http';
-import * as _ from 'lodash';
+import { Http, RequestOptions, Headers } from '@angular/http';
 import 'rxjs/Rx';
 
 const api =  'https://jsonplaceholder.typicode.com';
@@ -9,8 +8,8 @@ export class HttpService {
 
   constructor(private http: Http) {}
 
-  request(method, uri, data = {}) {
-    const [url, requestOptions]: any = this.prepareRequestOptions(method, uri, data);
+  request(method, uri) {
+    const [url, requestOptions]: any = this.prepareRequestOptions(method, uri);
     console.log('request to: ', url);
     return this.http
       .request(url, requestOptions)
@@ -18,10 +17,9 @@ export class HttpService {
       .catch(e => e.json()); // should write method to handle server errors
   }
 
-  private prepareRequestOptions(method, uri, data): [string, RequestOptions] {
+  private prepareRequestOptions(method, uri): [string, RequestOptions] {
     const requestOptionsObject = {
-      method: method,
-      body: data
+      method: method
     };
 
     const url = api + uri;

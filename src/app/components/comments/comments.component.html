@@ -1,0 +1,12 @@
+<div>
+  <div>Comments on <strong>{{post?.title}}</strong></div>
+  <div class="container"
+       *ngFor="let comment of comments; let o= odd; let e=even;"
+       [ngClass]="{ odd: o, even: e }"
+  >
+    <strong>{{comment.name}}</strong>
+    <p>{{comment.body}}</p>
+    <a href="mailto:{{comment.email}}">{{comment.email}}</a>
+  </div>
+</div>
+

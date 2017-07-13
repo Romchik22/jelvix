@@ -5,14 +5,12 @@ import { DataService } from '../../services/data.service';
 
 @Component({
   templateUrl: './posts.component.html',
-  styles: [`
-    .container { margin-bottom: 10px; }
-    .even { background-color: gainsboro; }
-    .odd { background-color: ghostwhite; }
-  `]
+  styleUrls: ['../../app.component.css']
 })
 export class PostsComponent implements OnInit {
-  posts: any[]
+  posts: any[];
+  user: any;
+
   constructor(public dataService: DataService,
               private router: Router,
               private activatedRoute: ActivatedRoute) {}
@@ -20,15 +18,12 @@ export class PostsComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.params.subscribe((params: Params) => {
       const userId = +params['id'];
-      this.getPostsByUserId(userId).subscribe(data => { console.log(data); this.posts = data; });
+      this.dataService.getUserById(userId).subscribe(data => this.user = data );
+      this.dataService.getPostsByUserId(userId).subscribe(data => this.posts = data);
     });
   }
 
-  getPostsByUserId(userId) {
-    return this.dataService.getPostsByUserId(userId);
-  }
-  goToUserPosts(id) {
-    console.log(id);
-    this.router.navigate([`user/${id}/posts`]);
+  goToPostComments(id) {
+    this.router.navigate([`post/${id}/comments`]);
   }
 }

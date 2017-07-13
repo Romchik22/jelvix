@@ -8,13 +8,15 @@ import { DataService } from './services/data.service';
 import { AppComponent } from './app.component';
 import { UsersComponent } from './components/users/users.component';
 import { PostsComponent } from './components/posts/posts.component';
+import { CommentsComponent } from './components/comments/comments.component';
 import { routing } from './app.routing';
 
 @NgModule({
   declarations: [
     AppComponent,
     UsersComponent,
-    PostsComponent
+    PostsComponent,
+    CommentsComponent
   ],
   imports: [
     BrowserModule,

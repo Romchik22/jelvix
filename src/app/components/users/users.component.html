@@ -5,9 +5,13 @@
        (click)="goToUserPosts(user.id)"
   >
     <strong>{{user.name}}</strong>
-    <div>
+    <div *ngIf="user.email">
       <label for="email">email: </label>
-      <a href="mailto:{{user.email}}">{{user.email}}</a>
+      <a href="mailto:{{user.email}}" (click)="$event.stopPropagation()">{{user.email}}</a>
+    </div>
+    <div *ngIf="user.phone">
+      <label for="phone">phone: </label>
+      <a href="tel:{{user.phone}}" (click)="$event.stopPropagation()">{{user.phone}}</a>
     </div>
     <div>
       <label for="company">company: </label>
